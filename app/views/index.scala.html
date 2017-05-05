@@ -1,0 +1,17 @@
+@(env: play.Environment)
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Frontend</title>
+</head>
+<body>
+    <div id="app"></div>
+    @if(env.isDev) {
+        <script src="http://localhost:8080/build.js"></script>
+    } else {
+        <script src="/assets/js/build.js"></script>
+    }
+</body>
+</html>
