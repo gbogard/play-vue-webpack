@@ -10,9 +10,9 @@ object WebpackServer {
       var process: Option[Process] = None
       override def afterStarted(add: InetSocketAddress): Unit = {
         process = if (System.getProperty("os.name").toUpperCase().indexOf("WIN") >= 0)
-          Option(Process("cmd /c npm watch", base).run)
+          Option(Process("cmd /c npm run watch", base).run)
         else
-          Option(Process("npm watch", base).run)
+          Option(Process("npm run watch", base).run)
       }
 
       override def afterStopped(): Unit = {
