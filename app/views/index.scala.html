@@ -1,17 +1,20 @@
-@(env: play.Environment, port: Int)
+@(env: play.Environment, port: Int, jsBundle: String, cssBundle: String)
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Frontend</title>
+    @if(env.isProd) {
+        <link rel="stylesheet" href="/assets/bundle/@cssBundle">
+    }
 </head>
 <body>
     <div id="app"></div>
     @if(env.isDev) {
         <script src="http://localhost:@port/build.js"></script>
     } else {
-        <script src="/assets/js/build.js"></script>
+        <script src="/assets/bundle/@jsBundle"></script>
     }
 </body>
 </html>

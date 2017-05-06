@@ -2,6 +2,7 @@ logs
 project/project
 project/target
 target
+bundle
 tmp
 .history
 dist
@@ -14,5 +15,6 @@ dist
 /RUNNING_PID
 /.settings
 node_modules
+*.log
 
     
