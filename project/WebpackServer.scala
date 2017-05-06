@@ -13,11 +13,10 @@ object WebpackServer {
       val isWin: Boolean = System.getProperty("os.name").toUpperCase().indexOf("WIN") >= 0
       override def afterStarted(add: InetSocketAddress): Unit = {
         val port = config.getInt("webpack.port")
-        val npmPath: String = if(!config.getIsNull("npm.path")) config.getString("npm.path") else "npm"
         process = if (isWin)
-          Option(Process(s"cmd /c $npmPath run watch -- --port $port", base).run)
+          Option(Process(s"cmd /c npm run watch -- --port $port", base).run)
         else
-          Option(Process(s"$npmPath run watch -- --port $port", base).run)
+          Option(Process(s"npm run watch -- --port $port", base).run)
       }
       override def afterStopped(): Unit = {
         process.foreach(p => { p.destroy() })

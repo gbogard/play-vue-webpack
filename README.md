@@ -25,7 +25,3 @@ sbt ~run
 
 #### webpack.port
 Allows you to change the port Webpack-dev-server is running on. (default 8080)
-
-#### npm.path
-Allow you to change the path to the npm executable
-
