@@ -1,3 +1,6 @@
+import com.typesafe.sbt.packager.MappingsHelper._
+mappings in Universal ++= directory(baseDirectory.value / "public")
+
 name := "play-vue-webpack"
 
 version := "1.0"
@@ -15,9 +18,6 @@ unmanagedResourceDirectories in Test <+=  baseDirectory ( _ /"target/web/public/
 
 resolvers += "scalaz-bintray" at "https://dl.bintray.com/scalaz/releases"
 
-import com.typesafe.sbt.packager.MappingsHelper._
-mappings in Universal ++= directory(baseDirectory.value / "public")
-
 // Production front-end build
 lazy val frontEndBuild = taskKey[Unit]("Execute the npm build command to build the front-end")
 
@@ -26,4 +26,4 @@ frontEndBuild := {
   println(Process("npm run build", file("front")).!!)
 }
 
-packageZipTarball <<= (packageZipTarball in Universal) dependsOn frontEndBuild
+dist <<= dist dependsOn frontEndBuild
