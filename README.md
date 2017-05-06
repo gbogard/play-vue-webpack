@@ -29,7 +29,7 @@ SASS stylesheets are located in the front/sass folder.
 
 This boilerplate uses Webpack-dev-server to provide hot-reloading during development.
 
-### Production mode```
+### Production mode
 
 Use `sbt dist` to create zip archive containing your application. This will also trigger
 the front-end build.
