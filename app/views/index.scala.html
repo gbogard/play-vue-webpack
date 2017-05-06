@@ -1,4 +1,4 @@
-@(env: play.Environment)
+@(env: play.Environment, port: Int)
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +9,7 @@
 <body>
     <div id="app"></div>
     @if(env.isDev) {
-        <script src="http://localhost:8080/build.js"></script>
+        <script src="http://localhost:@port/build.js"></script>
     } else {
         <script src="/assets/js/build.js"></script>
     }

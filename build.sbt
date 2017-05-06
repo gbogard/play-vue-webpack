@@ -1,4 +1,4 @@
-name := "frontend"
+name := "play-vue-webpack"
 
 version := "1.0"
 
