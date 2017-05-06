@@ -27,6 +27,7 @@
     "webpack-dev-server": "^2.4.5"
   },
   "dependencies": {
+    "bootstrap": "^4.0.0-alpha.6",
     "vue": "^2.3.2"
   }
 }
