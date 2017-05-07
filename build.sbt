@@ -19,11 +19,24 @@ unmanagedResourceDirectories in Test <+=  baseDirectory ( _ /"target/web/public/
 resolvers += "scalaz-bintray" at "https://dl.bintray.com/scalaz/releases"
 
 // Production front-end build
+lazy val cleanFrontEndBuild = taskKey[Unit]("Remove the old front-end build")
+
+cleanFrontEndBuild := {
+  val d = file("public/bundle")
+  if (d.exists()) {
+    d.listFiles.foreach(f => {
+      if(f.isFile) f.delete
+    })
+  }
+}
+
 lazy val frontEndBuild = taskKey[Unit]("Execute the npm build command to build the front-end")
 
 frontEndBuild := {
   println(Process("npm install", file("front")).!!)
   println(Process("npm run build", file("front")).!!)
 }
+
+frontEndBuild <<= frontEndBuild dependsOn cleanFrontEndBuild
 
 dist <<= dist dependsOn frontEndBuild

@@ -40,7 +40,12 @@ module.exports = {
         ]
     },
     plugins:[
-        new webpack.optimize.UglifyJsPlugin({}),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify('production')
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            sourceMap: true
+        }),
         new ExtractTextPlugin("style.bundle.[contentHash].css"),
         new OptimizeCssAssetsPlugin({
             cssProcessor: require('cssnano'),
