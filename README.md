@@ -13,7 +13,7 @@ It works out-of-the-box.
 
 ## How to use
 
-Clone the project.
+[Download the project](https://github.com/gbogard/play-vue-webpack/archive/master.zip).
 
 Install the front-end dependencies.
 
