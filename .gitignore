@@ -15,6 +15,5 @@ dist
 /RUNNING_PID
 /.settings
 node_modules
+front/package-lock.json
 *.log
-
-    

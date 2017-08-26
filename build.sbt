@@ -3,18 +3,18 @@ mappings in Universal ++= directory(baseDirectory.value / "public")
 
 name := "play-vue-webpack"
 
-version := "1.0"
+version := "1.1"
 
-scalaVersion := "2.11.7"
+scalaVersion := "2.12.2"
 
 lazy val `play-vue-webpack` = (project in file(".")).enablePlugins(PlayScala)
 
-libraryDependencies ++= Seq( filters, jdbc , cache , ws   , specs2 % Test )
+libraryDependencies ++= Seq(guice, filters, jdbc , cacheApi ,ws , specs2 % Test)
 
 // Play framework hooks for development
 PlayKeys.playRunHooks += WebpackServer(file("./front"))
 
-unmanagedResourceDirectories in Test <+=  baseDirectory ( _ /"target/web/public/test" )  
+unmanagedResourceDirectories in Test +=  baseDirectory ( _ /"target/web/public/test" ).value
 
 resolvers += "scalaz-bintray" at "https://dl.bintray.com/scalaz/releases"
 
@@ -37,6 +37,6 @@ frontEndBuild := {
   println(Process("npm run build", file("front")).!!)
 }
 
-frontEndBuild <<= frontEndBuild dependsOn cleanFrontEndBuild
+frontEndBuild := (frontEndBuild dependsOn cleanFrontEndBuild).value
 
-dist <<= dist dependsOn frontEndBuild
+dist := (dist dependsOn frontEndBuild).value

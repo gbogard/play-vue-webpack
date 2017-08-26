@@ -3,11 +3,12 @@ package controllers
 import java.io.File
 
 import com.google.inject.Inject
-import play.api.mvc._
 import com.typesafe.config.{Config, ConfigFactory}
 import lib.WebpackBuildFile
+import play.Environment
+import play.api.mvc._
 
-class FrontController @Inject()(env :play.Environment) extends Controller {
+class FrontController @Inject() (cc: ControllerComponents, env: Environment) extends AbstractController(cc){
   val config: Config = ConfigFactory.parseFile(new File("conf/frontend.conf")).resolve()
 
   def index = Action {
