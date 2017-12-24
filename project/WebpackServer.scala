@@ -2,7 +2,7 @@ import java.io.File
 import java.net.InetSocketAddress
 
 import play.sbt.PlayRunHook
-import sbt._
+import scala.sys.process._
 import com.typesafe.config._
 
 object WebpackServer {
