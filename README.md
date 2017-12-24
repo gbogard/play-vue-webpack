@@ -18,7 +18,7 @@ It works out-of-the-box.
 Install the front-end dependencies.
 
 ```
-cd front && npm install
+sbt frontEndBuild
 ```
 
 Launch the project
