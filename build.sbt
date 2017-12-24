@@ -32,11 +32,14 @@ cleanFrontEndBuild := {
 
 lazy val frontEndBuild = taskKey[Unit]("Execute the npm build command to build the front-end")
 
+val buildCommandPrefix = sys.props.get("os.name").filter(_.toUpperCase.contains("WIN")).map(_ => "cmd /c npm").getOrElse("npm")
+
 frontEndBuild := {
-  println(Process("npm install", file("front")).!!)
-  println(Process("npm run build", file("front")).!!)
+  println(Process(s"$buildCommandPrefix install", file("front")).!!)
+  println(Process(s"$buildCommandPrefix run build", file("front")).!!)
 }
 
 frontEndBuild := (frontEndBuild dependsOn cleanFrontEndBuild).value
 
+stage := (stage dependsOn frontEndBuild).value
 dist := (dist dependsOn frontEndBuild).value
